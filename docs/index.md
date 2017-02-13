@@ -59,7 +59,7 @@ By default, if no tag is indicated (or if using the tag `latest`), the latest ve
 
 Run a container from the image with the following command:
 
-	$ sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+	$ sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -p 4560:4560 -it --name elk sebp/elk
 
 **Note** – The whole ELK stack will be started. See the *[Starting services selectively](#selective-services)* section to selectively start part of the stack.
 
@@ -68,6 +68,7 @@ This command publishes the following ports, which are needed for proper operatio
 - 5601 (Kibana web interface).
 - 9200 (Elasticsearch JSON interface).
 - 5044 (Logstash Beats interface, receives logs from Beats such as Filebeat – see the *[Forwarding logs with Filebeat](#forwarding-logs-filebeat)* section).
+- 4560 (Logstash TCP input)
 
 **Note** – The image also exposes Elasticsearch's transport interface on port 9300. Use the `-p 9300:9300` option with the `docker` command above to publish it. This transport interface is notably used by [Elasticsearch's Java client API](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html), and to run Elasticsearch in a cluster.
 
@@ -95,6 +96,7 @@ If you're using [Docker Compose](https://docs.docker.com/compose/) to manage you
 	    - "5601:5601"
 	    - "9200:9200"
 	    - "5044:5044"
+		- "4560:4560"
 
 You can then start the ELK container like this:
 
