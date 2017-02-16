@@ -1,6 +1,8 @@
 This Docker image is based on the sebp/elk docker image. 
 
-docker run -p 5601:5601 -p 9200:9200 -p 4560:4560 -it --name elk zhaohuabing/elk-docker/
+run:
+
+docker run -p 5601:5601 -p 9200:9200 -p 4560:4560 -it --name elk zhaohuabing/elk-docker
 
 Modification:
 - Add Logstash TCP input config, the listening port is 4560.
